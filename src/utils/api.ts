@@ -1,7 +1,10 @@
 import axios from 'axios';
 import type { Article, ArticleListResponse, Stats } from '../types';
 
-const api = axios.create({ baseURL: (import.meta.env.VITE_API_URL || '') + '/api' });
+const api = axios.create({
+  baseURL: (import.meta.env.VITE_API_URL || '') + '/api',
+  headers: { 'ngrok-skip-browser-warning': '1' },
+});
 
 export const fetchNews = (categories?: string[]) =>
   api.post('/fetch-news', { categories }).then(r => r.data);
